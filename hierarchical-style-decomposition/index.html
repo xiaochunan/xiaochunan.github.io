@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Demo page for LEARNING HIERARCHICAL REPRESENTATIONS FOR EXPRESSIVE SPEAKING STYLE IN END-TO-END SPEECH SYNTHESIS</title>
+</head>
+<body>
+
+<h2 align="center"> Audio samples for "LEARNING HIERARCHICAL REPRESENTATIONS FOR EXPRESSIVE SPEAKING STYLE IN END-TO-END SPEECH SYNTHESIS"</h2>
+<div><b>Abstract:</b> Although Global Style Tokens (GSTs) are a recently-proposed method to uncover expressive factors of variation in speaking style, they are a mixture of style attributes without explicitly considering the factorization of multiple-level speaking styles. In this work, we introduce a hierarchical GST architecture with residuals to Tacotron, which learns multiple-level disentangled representations to model and control different style granularities in synthesized speech. We make hierarchical evaluations conditioned on individual tokens from different GST layers. As the number of layers increases, we tend to observe a coarse to fine style decomposition. For example, the first GST layer learns a good representation of speaker IDs while finer speaking style variations can be found in higher-level layers. Meanwhile, the proposed model shows good performance of style transfer.</div>
+
+<h4>1. Comparing the style decomposition capability of each token in the first GST layer. This GST layer learns a good representation of speaker IDs, but the speaking style is not distinguishable across tokens. </h4>
+<blockquote>
+<table>
+<tr><td colspan=2><span>1.1. You have not the smallest chance of moving me.</span></td></tr>
+<tr>
+<td align=center width=200>token1 (speaker1)</td><td align=center width=200>token2 (speaker2)</td><td align=center width=200>token3 (speaker3)</td><td align=center width=200>token4 (speaker4)</td><td align=center width=200>token5 (speaker5)</td>
+</tr>
+<tr>
+<td><audio controls><source src="samples/1.speaker_ID/1.2/eval-275000_ref-randomWeight_1.wav"></audio></td>
+<td><audio controls><source src="samples/1.speaker_ID/1.2/eval-275000_ref-randomWeight_2.wav"></audio></td>
+<td><audio controls><source src="samples/1.speaker_ID/1.2/eval-275000_ref-randomWeight_9.wav"></audio></td>
+<td><audio controls><source src="samples/1.speaker_ID/1.2/eval-275000_ref-randomWeight_4.wav"></audio></td>
+<td><audio controls><source src="samples/1.speaker_ID/1.2/eval-275000_ref-randomWeight_5.wav"></audio></td>
+</tr>
+<tr>
+<td align=center width=200>token6 (speaker6)</td><td align=center width=200>token7 (speaker7)</td><td align=center width=200>token8 (speaker8)</td><td align=center width=200>token9 (speaker9)</td><td align=center width=200>token10 (speaker10)</td>
+</tr>
+<tr>
+<td><audio controls><source src="samples/1.speaker_ID/1.2/eval-275000_ref-randomWeight_6.wav"></audio></td>
+<td><audio controls><source src="samples/1.speaker_ID/1.2/eval-275000_ref-randomWeight_7.wav"></audio></td>
+<td><audio controls><source src="samples/1.speaker_ID/1.2/eval-275000_ref-randomWeight_8.wav"></audio></td>
+<td><audio controls><source src="samples/1.speaker_ID/1.2/eval-275000_ref-randomWeight_3.wav"></audio></td>
+<td><audio controls><source src="samples/1.speaker_ID/1.2/eval-275000_ref-randomWeight_10.wav"></audio></td>
+</tr>
+<tr><td colspan=2><span>1.2. It is a very anxious period for her.</span></td></tr>
+<tr>
+<td align=center width=200>token1 (speaker1)</td><td align=center width=200>token2 (speaker2)</td><td align=center width=200>token3 (speaker3)</td><td align=center width=200>token4 (speaker4)</td><td align=center width=200>token5 (speaker5)</td>
+</tr>
+<tr>
+<td><audio controls><source src="samples/1.speaker_ID/1.1/eval-275000_ref-randomWeight_1.wav"></audio></td>
+<td><audio controls><source src="samples/1.speaker_ID/1.1/eval-275000_ref-randomWeight_2.wav"></audio></td>
+<td><audio controls><source src="samples/1.speaker_ID/1.1/eval-275000_ref-randomWeight_9.wav"></audio></td>
+<td><audio controls><source src="samples/1.speaker_ID/1.1/eval-275000_ref-randomWeight_4.wav"></audio></td>
+<td><audio controls><source src="samples/1.speaker_ID/1.1/eval-275000_ref-randomWeight_5.wav"></audio></td>
+</tr>
+<tr>
+<td align=center width=200>token6 (speaker6)</td><td align=center width=200>token7 (speaker7)</td><td align=center width=200>token8 (speaker8)</td><td align=center width=200>token9 (speaker9)</td><td align=center width=200>token10 (speaker10)</td>
+</tr>
+<tr>
+<td><audio controls><source src="samples/1.speaker_ID/1.1/eval-275000_ref-randomWeight_6.wav"></audio></td>
+<td><audio controls><source src="samples/1.speaker_ID/1.1/eval-275000_ref-randomWeight_7.wav"></audio></td>
+<td><audio controls><source src="samples/1.speaker_ID/1.1/eval-275000_ref-randomWeight_8.wav"></audio></td>
+<td><audio controls><source src="samples/1.speaker_ID/1.1/eval-275000_ref-randomWeight_3.wav"></audio></td>
+<td><audio controls><source src="samples/1.speaker_ID/1.1/eval-275000_ref-randomWeight_10.wav"></audio></td>
+</tr>
+</table>
+</blockquote>
+<h4>2. Comparing the style decomposition capability of each token in the second GST layer. This GST layer has lost some speaker IDs learned from the first layer and learned some information related to speaking style (a mixture of duration, stress and pitch), which need to be further disentangled for a clearer style interpretation.</h4>
+<blockquote>
+<table>
+<tr><td colspan=3><span>2.1. All the horses would come to him, but I think we were his favorites.</span></td></tr>
+<tr>
+<td align=center width=400>token1 (a mixture of style attributes)</td><td align=center width=400>token2 (a mixture of style attributes)</td><td align=center width=400>token3 (a mixture of style attributes)</td><td align=center width=400>token4 (a mixture of style attributes)</td><td align=center width=400>token5 (a mixture of style attributes)</td>
+</tr>
+<tr>
+<td><audio controls><source src="samples/2.mixture_tokens/2.1/eval-275000_ref-randomWeight_1.wav"></audio></td>
+<td><audio controls><source src="samples/2.mixture_tokens/2.1/eval-275000_ref-randomWeight_2.wav"></audio></td>
+<td><audio controls><source src="samples/2.mixture_tokens/2.1/eval-275000_ref-randomWeight_3.wav"></audio></td>
+<td><audio controls><source src="samples/2.mixture_tokens/2.1/eval-275000_ref-randomWeight_4.wav"></audio></td>
+<td><audio controls><source src="samples/2.mixture_tokens/2.1/eval-275000_ref-randomWeight_5.wav"></audio></td>
+</tr>
+<tr>
+<td align=center width=400>token6 (a mixture of style attributes)</td><td align=center width=400>token7 (a mixture of style attributes)</td><td align=center width=400>token8 (a mixture of style attributes)</td><td align=center width=400>token9 (a mixture of style attributes)</td><td align=center width=400>token10 (a mixture of style attributes)</td>
+</tr>
+<tr>
+<td><audio controls><source src="samples/2.mixture_tokens/2.1/eval-275000_ref-randomWeight_6.wav"></audio></td>
+<td><audio controls><source src="samples/2.mixture_tokens/2.1/eval-275000_ref-randomWeight_7.wav"></audio></td>
+<td><audio controls><source src="samples/2.mixture_tokens/2.1/eval-275000_ref-randomWeight_8.wav"></audio></td>
+<td><audio controls><source src="samples/2.mixture_tokens/2.1/eval-275000_ref-randomWeight_9.wav"></audio></td>
+<td><audio controls><source src="samples/2.mixture_tokens/2.1/eval-275000_ref-randomWeight_10.wav"></audio></td>
+</tr>
+<tr><td colspan=2><span>2.2. Of course, I do not want to have words with a young thing like you.</span></td></tr>
+<tr>
+<td align=center width=400>token1 (a mixture of style attributes)</td><td align=center width=400>token2 (a mixture of style attributes)</td><td align=center width=400>token3 (a mixture of style attributes)</td><td align=center width=400>token4 (a mixture of style attributes)</td><td align=center width=400>token5 (a mixture of style attributes)</td>
+</tr>
+<tr>
+<td><audio controls><source src="samples/2.mixture_tokens/2.2/eval-275000_ref-randomWeight_1.wav"></audio></td>
+<td><audio controls><source src="samples/2.mixture_tokens/2.2/eval-275000_ref-randomWeight_2.wav"></audio></td>
+<td><audio controls><source src="samples/2.mixture_tokens/2.2/eval-275000_ref-randomWeight_3.wav"></audio></td>
+<td><audio controls><source src="samples/2.mixture_tokens/2.2/eval-275000_ref-randomWeight_4.wav"></audio></td>
+<td><audio controls><source src="samples/2.mixture_tokens/2.2/eval-275000_ref-randomWeight_5.wav"></audio></td>
+</tr>
+<tr>
+<td align=center width=400>token6 (a mixture of style attributes)</td><td align=center width=400>token7 (a mixture of style attributes)</td><td align=center width=400>token8 (a mixture of style attributes)</td><td align=center width=400>token9 (a mixture of style attributes)</td><td align=center width=400>token10 (a mixture of style attributes)</td>
+</tr>
+<tr>
+<td><audio controls><source src="samples/2.mixture_tokens/2.2/eval-275000_ref-randomWeight_6.wav"></audio></td>
+<td><audio controls><source src="samples/2.mixture_tokens/2.2/eval-275000_ref-randomWeight_7.wav"></audio></td>
+<td><audio controls><source src="samples/2.mixture_tokens/2.2/eval-275000_ref-randomWeight_8.wav"></audio></td>
+<td><audio controls><source src="samples/2.mixture_tokens/2.2/eval-275000_ref-randomWeight_9.wav"></audio></td>
+<td><audio controls><source src="samples/2.mixture_tokens/2.2/eval-275000_ref-randomWeight_10.wav"></audio></td>
+</tr>
+</table>
+</blockquote>
+<h4>3. Comparing the style decomposition capability of each token in the third GST layer. This GST layer has learned the finer speaking style granularities, which correspond to different tokens and make a clearer style interpretation. </h4>
+<blockquote>
+<table>
+<tr><td colspan=3><span>3.1. Take your money and go home; I shall not want you on my farm again.</span></td></tr>
+<tr>
+<td align=center width=200>token1 (no start offset)</td><td align=center width=200>token2 (speaking speed)</td><td align=center width=200>token3 (pause length)</td><td align=center width=200>token4 (pause position)</td><td align=center width=200>token5 (stress)</td>
+</tr>
+<tr>
+<td><audio controls><source src="samples/3.diff_tokens/3.1/eval-275000_ref-randomWeight_A.wav"></audio></td>
+<td><audio controls><source src="samples/3.diff_tokens/3.1/eval-275000_ref-randomWeight_B.wav"></audio></td>
+<td><audio controls><source src="samples/3.diff_tokens/3.1/eval-275000_ref-randomWeight_C.wav"></audio></td>
+<td><audio controls><source src="samples/3.diff_tokens/3.1/eval-275000_ref-randomWeight_D.wav"></audio></td>
+<td><audio controls><source src="samples/3.diff_tokens/3.1/eval-275000_ref-randomWeight_E.wav"></audio></td>
+</tr>
+<tr>
+<td align=center width=200>token6 (roughness)</td><td align=center width=200>token7 (heavier style)</td><td align=center width=200>token8 (lighter style)</td><td align=center width=200>token9 (rising pitch)</td><td align=center width=200>token10 (falling pitch)</td>
+</tr>
+<tr>
+<td><audio controls><source src="samples/3.diff_tokens/3.1/eval-275000_ref-randomWeight_F.wav"></audio></td>
+<td><audio controls><source src="samples/3.diff_tokens/3.1/eval-275000_ref-randomWeight_G.wav"></audio></td>
+<td><audio controls><source src="samples/3.diff_tokens/3.1/eval-275000_ref-randomWeight_H.wav"></audio></td>
+<td><audio controls><source src="samples/3.diff_tokens/3.1/eval-275000_ref-randomWeight_I.wav"></audio></td>
+<td><audio controls><source src="samples/3.diff_tokens/3.1/eval-275000_ref-randomWeight_J.wav"></audio></td>
+</tr>
+<tr><td colspan=3><span>3.2. Dear Fanny, you know our present wretchedness; may God support you under your share!</span></td></tr>
+<tr>
+<td align=center width=200>token1 (no start offset)</td><td align=center width=200>token2 (speaking speed)</td><td align=center width=200>token3 (pause length)</td><td align=center width=200>token4 (pause position)</td><td align=center width=200>token5 (stress)</td>
+</tr>
+<tr>
+<td><audio controls><source src="samples/3.diff_tokens/3.2/eval-275000_ref-randomWeight_A.wav"></audio></td>
+<td><audio controls><source src="samples/3.diff_tokens/3.2/eval-275000_ref-randomWeight_B.wav"></audio></td>
+<td><audio controls><source src="samples/3.diff_tokens/3.2/eval-275000_ref-randomWeight_C.wav"></audio></td>
+<td><audio controls><source src="samples/3.diff_tokens/3.2/eval-275000_ref-randomWeight_D.wav"></audio></td>
+<td><audio controls><source src="samples/3.diff_tokens/3.2/eval-275000_ref-randomWeight_E.wav"></audio></td>
+</tr>
+<tr>
+<td align=center width=200>token6 (roughness)</td><td align=center width=200>token7 (heavier style)</td><td align=center width=200>token8 (lighter style)</td><td align=center width=200>token9 (rising pitch)</td><td align=center width=200>token10 (falling pitch)</td>
+</tr>
+<tr>
+<td><audio controls><source src="samples/3.diff_tokens/3.2/eval-275000_ref-randomWeight_F.wav"></audio></td>
+<td><audio controls><source src="samples/3.diff_tokens/3.2/eval-275000_ref-randomWeight_G.wav"></audio></td>
+<td><audio controls><source src="samples/3.diff_tokens/3.2/eval-275000_ref-randomWeight_H.wav"></audio></td>
+<td><audio controls><source src="samples/3.diff_tokens/3.2/eval-275000_ref-randomWeight_I.wav"></audio></td>
+<td><audio controls><source src="samples/3.diff_tokens/3.2/eval-275000_ref-randomWeight_J.wav"></audio></td>
+</tr>
+</table>
+</blockquote>
+<h4>4. Comparing the performance of parallel style transfer through testing how well the GST and H-GST models can replicate the prosodic style of a reference signal. The synthesized text matches the text of a reference signal.</h4>
+<blockquote>
+<table>
+<tr><td colspan=2><span>4.1. It is a very anxious period for her.</span></td></tr>
+<tr>
+<td align=center width=300>reference signal</td><td align=center width=300>GST</td>
+<td align=center width=300>H-GST</td>
+</tr>
+<tr>
+<td><audio src="samples/4.parallel_transfer/reference_audio/CA-MP1-13-075.wav" controls=""></audio></td>
+<td><audio src="samples/4.parallel_transfer/GST/eval-275000_ref-CA-MP1-13-075.wav" controls=""></audio></td>
+<td><audio src="samples/4.parallel_transfer/H-GST/eval-275000_ref-CA-MP1-13-075.wav" controls=""></audio></td>
+</tr>
+<tr><td colspan=2><span>4.2. The journey was likely to be a silent one.</span></td></tr>
+<tr>
+<td align=center width=300>reference signal</td><td align=center width=300>GST</td>
+<td align=center width=300>H-GST</td>
+</tr>
+<tr>
+<td><audio src="samples/4.parallel_transfer/reference_audio/CA-MP3-15-156.wav" controls=""></audio></td>
+<td><audio src="samples/4.parallel_transfer/GST/eval-275000_ref-CA-MP3-15-156.wav" controls=""></audio></td>
+<td><audio src="samples/4.parallel_transfer/H-GST/eval-275000_ref-CA-MP3-15-156.wav" controls=""></audio></td>
+</tr>
+</table>
+</blockquote>
+<h4>5. Comparing the performance of non-parallel style transfer through testing how well the GST and H-GST models can replicate the prosodic style of a reference signal. The synthesized text does not match the text of a reference signal.</h4>
+<blockquote>
+<table>
+<tr><td colspan=2><span>5.1. At any other time this would have been felt dreadfully.</span></td></tr>
+<tr>
+<td align=center width=300>reference signal</td><td align=center width=300>GST</td>
+<td align=center width=300>H-GST</td>
+</tr>
+<tr>
+<td><audio src="samples/5.non-parallel_transfer/reference_audio/CA-BB-15-35.wav" controls=""></audio></td>
+<td><audio src="samples/5.non-parallel_transfer/GST/eval-275000_ref-CA-BB-15-35.wav" controls=""></audio></td>
+<td><audio src="samples/5.non-parallel_transfer/H-GST/eval-275000_ref-CA-BB-15-35.wav" controls=""></audio></td>
+</tr>
+<tr><td colspan=2><span>5.2. This can not have taken you by surprise.</span></td></tr>
+<tr>
+<td align=center width=300>reference signal</td><td align=center width=300>GST</td>
+<td align=center width=300>H-GST</td>
+</tr>
+<tr>
+<td><audio src="samples/5.non-parallel_transfer/reference_audio/CA-MP3-01-103.wav" controls=""></audio></td>
+<td><audio src="samples/5.non-parallel_transfer/GST/eval-275000_ref-CA-MP3-01-103.wav" controls=""></audio></td>
+<td><audio src="samples/5.non-parallel_transfer/H-GST/eval-275000_ref-CA-MP3-01-103.wav" controls=""></audio></td>
+</tr>
+<table>
+</blockquote>
+
+
+</body>
+</html>
