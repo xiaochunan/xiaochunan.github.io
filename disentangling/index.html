@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Demo page for Disentangling Style and Speaker Attributes for TTS Style Transfer</title>
+</head>
+<body>
+
+<h2 align="center"> Audio samples from "Disentangling Style and Speaker Attributes for TTS Style Transfer"</h2>
+
+<div><b>Authors:</b> Xiaochun An, Frank K. Soong, Lei Xie</div>
+
+<div><b>Abstract:</b> End-to-end neural TTS has shown improved performance in speech style transfer. However, the improvement is still limited by the available training data in both target styles and speakers. Additionally, degenerated performance is observed when the trained TTS tries to transfer the speech to a target style from a new speaker with an unknown, arbitrary style. In this paper, we propose a new approach to seen and unseen style transfer training on disjoint, multi-style datasets, i.e., datasets of different styles are recorded, one individual style by one speaker in multiple utterances. An inverse autoregressive flow (IAF) technique is first introduced to improve the variational inference for learning an expressive style representation. A speaker encoder network is then developed for learning a discriminative speaker embedding, which is jointly trained with the rest neural TTS modules. The proposed approach of seen and unseen style transfer is effectively trained with six specifically-designed objectives: reconstruction loss, adversarial loss, style distortion loss, cycle consistency loss, style classification loss, and speaker classification loss. Experiments demonstrate, both objectively and subjectively, the effectiveness of the proposed approach for seen and unseen style transfer tasks. The performance of our approach is superior to and more robust than those of four other reference systems of prior art.</div>
+
+<p><b>Evaluation: </b> The performance of seen and unseen speech style transfer is evaluated in speech naturalness, style similarity, and speaker similarity. For each system, we randomly select the <i>reading</i> (standard reading speech) style as the seen style and make three experiments: from <i>Reading</i> style to <i>Customer-service</i> (spontaneous speech with fast speed) style (R2C), <i>Reading</i> style to <i>Poetry</i> (classical Chinese poetry speech with rich prosody variations) style (R2P), and <i>Reading</i> style to <i>Game</i> (exaggerated speech for role dubbing in the game) style (R2G). We randomly choose an unique <i>Taiwanese-reading</i> (Taiwanese accent reading speech) style from a new female speaker as the unseen style, and conduct three tests from <i>Taiwanese-reading</i> style to <i>Customer-service</i> style (TR2C), <i>Taiwanese-reading</i> style to <i>Poetry</i> style (TR2P), and <i>Taiwanese-reading</i> style to <i>Game</i> style (TR2G) to assess the performance of unseen style transfer.</p>
+
+<h4>1. Comparing the speech naturalness of seen and unseen style transfer with the GST, VAE, MRF-IT, MRF-ACC and proposed models:</h4>
+<tr><td colspan=5><span>We compare the performance of all models in speech naturalness with the MOS and ABX listening tests, where listeners are asked to mark a sentence unintelligible when any part of it is unintelligible in listening.</span></td></tr>
+<h4>Speech naturalness: bad --> good</h4>
+<blockquote>
+<table>
+<tr>
+<td width="100" rowspan=2><span>Transfer types:</span> </td><td align=center width=100 colspan=3><span>Seen style transfer</span></</td><td align=center width=100 colspan=3><span>Unseen style transfer</span></td>
+</tr>
+<tr>
+<td align=center width=50>R2C</td><td align=center width=50>R2P</td><td align=center width=50>R2G</td><td align=center width=50>TR2C</td><td align=center width=50>TR2P</td><td align=center width=50>TR2G</td>
+</tr>
+<tr>
+<td width="50">GST:</td>
+<td width="50" align=center><audio controls><source src="GST/R2C/zn_06.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="GST/R2P/poetry_03.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="GST/R2G/dq_01.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="GST/TR2C/zn_14.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="GST/TR2P/poetry_01.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="GST/TR2G/dq_04.wav"></audio></td>
+</tr>
+<tr>
+<td width="50">VAE:</td>
+<td width="50" align=center><audio controls><source src="VAE/R2C/zn_06.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="VAE/R2P/poetry_03.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="VAE/R2G/dq_01.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="VAE/TR2C/zn_14.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="VAE/TR2P/poetry_01.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="VAE/TR2G/dq_04.wav"></audio></td>
+</tr>
+<tr>
+<td width="50">MRF-IT:</td>
+<td width="50" align=center><audio controls><source src="MRF-IT/R2C/zn_06.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="MRF-IT/R2P/poetry_03.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="MRF-IT/R2G/dq_01.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="MRF-IT/TR2C/zn_14.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="MRF-IT/TR2P/poetry_01.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="MRF-IT/TR2G/dq_04.wav"></audio></td>
+</tr>
+<tr>
+<td width="50">MRF-ACC:</td>
+<td width="50" align=center><audio controls><source src="MRF-ACC/R2C/zn_06.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="MRF-ACC/R2P/poetry_03.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="MRF-ACC/R2G/dq_01.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="MRF-ACC/TR2C/zn_14.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="MRF-ACC/TR2P/poetry_01.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="MRF-ACC/TR2G/dq_04.wav"></audio></td>
+</tr>
+<tr>
+<td width="50">Proposed:</td>
+<td width="100" align=center><audio controls><source src="Proposed/R2C/zn_06.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="Proposed/R2P/poetry_03.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="Proposed/R2G/dq_01.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="Proposed/TR2C/zn_14.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="Proposed/TR2P/poetry_01.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="Proposed/TR2G/dq_04.wav"></audio></td>
+</tr>
+
+</table>
+<p><font color=red>Short summary: </font> The proposed model outperforms the reference models on both seen and unseen style transfer tasks. The performance of the proposed model on unseen style transfer is much better than other models. The results show a better generalization of the proposed model on the unseen style transfer.</p>
+</blockquote>
+
+<h4>2. Comparing the style similarity of seen and unseen style transfer with the GST, VAE, MRF-IT, MRF-ACC and proposed models:</h4>
+<tr><td colspan=5><span> We conduct an ABX test of style similarity to assess the style conversion performance, where listeners are asked to choose which speech sample sounds closer to the target style in terms of style expression.</span></td></tr>
+<h4>Style similarity: low --> high</h4>
+<blockquote>
+<table>
+<tr>
+<td align=center width=100 colspan=1><span>Source style: R</span></</td><td align=center width=100 colspan=1><span>Source style: TR</span></td>
+</tr>
+<tr>
+<td width="50" align=center><audio controls><source src="source_wavs/source_R.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="source_wavs/source_TR.wav"></audio></td>
+</tr>
+<tr>
+<td align=center width=100 colspan=1><span>Target style: C</span></</td><td align=center width=100 colspan=1><span>Target style: P</span></td><td align=center width=100 colspan=1><span>Target style: G</span></</td>
+</tr>
+<tr>
+<td width="50" align=center><audio controls><source src="target_wavs/target_C.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="target_wavs/target_P.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="target_wavs/target_G.wav"></audio></td>
+</tr>
+</table>
+</blockquote>
+
+<blockquote>
+<table>
+<tr>
+<td width="100" rowspan=2><span>Transfer types:</span> </td><td align=center width=100 colspan=3><span>Seen style transfer</span></</td><td align=center width=100 colspan=3><span>Unseen style transfer</span></td>
+</tr>
+<tr>
+<td align=center width=50>R2C</td><td align=center width=50>R2P</td><td align=center width=50>R2G</td><td align=center width=50>TR2C</td><td align=center width=50>TR2P</td><td align=center width=50>TR2G</td>
+</tr>
+<tr>
+<td width="50">GST:</td>
+<td width="50" align=center><audio controls><source src="GST/R2C/zn_03.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="GST/R2P/poetry_13.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="GST/R2G/dq_02.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="GST/TR2C/zn_01.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="GST/TR2P/poetry_02.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="GST/TR2G/dq_05.wav"></audio></td>
+</tr
+<tr>
+<td width="50">VAE:</td>
+<td width="50" align=center><audio controls><source src="VAE/R2C/zn_03.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="VAE/R2P/poetry_13.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="VAE/R2G/dq_02.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="VAE/TR2C/zn_01.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="VAE/TR2P/poetry_02.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="VAE/TR2G/dq_05.wav"></audio></td>
+</tr>
+<tr>
+<td width="50">MRF-IT:</td>
+<td width="50" align=center><audio controls><source src="MRF-IT/R2C/zn_03.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="MRF-IT/R2P/poetry_13.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="MRF-IT/R2G/dq_02.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="MRF-IT/TR2C/zn_01.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="MRF-IT/TR2P/poetry_02.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="MRF-IT/TR2G/dq_05.wav"></audio></td>
+</tr>
+<tr>
+<td width="50">MRF-ACC:</td>
+<td width="50" align=center><audio controls><source src="MRF-ACC/R2C/zn_03.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="MRF-ACC/R2P/poetry_13.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="MRF-ACC/R2G/dq_02.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="MRF-ACC/TR2C/zn_01.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="MRF-ACC/TR2P/poetry_02.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="MRF-ACC/TR2G/dq_05.wav"></audio></td>
+</tr>
+<tr>
+<td width="50">Proposed:</td>
+<td width="50" align=center><audio controls><source src="Proposed/R2C/zn_03.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="Proposed/R2P/poetry_13.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="Proposed/R2G/dq_02.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="Proposed/TR2C/zn_01.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="Proposed/TR2P/poetry_02.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="Proposed/TR2G/dq_05.wav"></audio></td>
+</tr>
+
+</table>
+<p><font color=red>Short summary: </font> The listeners give preference to the proposed system, showing the proposed method improves performance of style transfer. For the unseen style, we find that GST, VAE and MRF-IT models, in most cases, fail to transfer unseen style of the Taiwanese-reading style to the target style of customer-service or poetry or game style. The best reference system, MRF-ACC, is still significantly inferior to the proposed model in the style similarity test.</p>
+</blockquote>
+
+<h4>3. Comparing the speaker similarity of seen and unseen style transfer with the GST, VAE, MRF-IT, MRF-ACC and proposed models:</h4>
+<tr><td colspan=5><span> We conduct CMOS tests between the proposed model and each reference system to evaluate how well the transferred speech matches that of the source speaker's timbre, where listeners are asked to select audio that represents a closer speaker to source audio.</span></td></tr>
+<h4>Speaker similarity: low --> high</h4>
+<blockquote>
+<table>
+<tr>
+<td width="50" rowspan=1><span></span> </td><td align=center width=100 colspan=3><span>Source speaker: R</span></</td><td align=center width=100 colspan=3><span>Source speaker: TR</span></td>
+</tr>
+<tr>
+<td width="50"></td><td align=center width=100 colspan=3><span><audio controls><source src="source_wavs/source_speaker_R.wav"></audio></span></td>
+<td align=center width=100 colspan=3><span><audio controls><source src="source_wavs/source_speaker_TR.wav"></audio></span></td>
+</tr>
+<tr>
+<td width="50" rowspan=2><span>Transfer types:</span> </td><td align=center width=100 colspan=3><span>Seen style transfer</span></</td><td align=center width=100 colspan=3><span>Unseen style transfer</span></td>
+</tr>
+<tr>
+<td align=center width=50>R2C</td><td align=center width=50>R2P</td><td align=center width=50>R2G</td><td align=center width=50>TR2C</td><td align=center width=50>TR2P</td><td align=center width=50>TR2G</td>
+</tr>
+<tr>
+<td width="50">GST:</td>
+<td width="50" align=center><audio controls><source src="GST/R2C/zn_04.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="GST/R2P/poetry_06.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="GST/R2G/dq_03.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="GST/TR2C/zn_13.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="GST/TR2P/poetry_14.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="GST/TR2G/dq_06.wav"></audio></td>
+</tr>
+<tr>
+<td width="50">VAE:</td>
+<td width="50" align=center><audio controls><source src="VAE/R2C/zn_04.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="VAE/R2P/poetry_06.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="VAE/R2G/dq_03.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="VAE/TR2C/zn_13.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="VAE/TR2P/poetry_14.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="VAE/TR2G/dq_06.wav"></audio></td>
+</tr>
+<tr>
+<td width="50">MRF-IT:</td>
+<td width="50" align=center><audio controls><source src="MRF-IT/R2C/zn_04.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="MRF-IT/R2P/poetry_06.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="MRF-IT/R2G/dq_03.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="MRF-IT/TR2C/zn_13.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="MRF-IT/TR2P/poetry_14.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="MRF-IT/TR2G/dq_06.wav"></audio></td>
+</tr>
+<tr>
+<td width="50">MRF-ACC:</td>
+<td width="50" align=center><audio controls><source src="MRF-ACC/R2C/zn_04.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="MRF-ACC/R2P/poetry_06.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="MRF-ACC/R2G/dq_03.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="MRF-ACC/TR2C/zn_13.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="MRF-ACC/TR2P/poetry_14.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="MRF-ACC/TR2G/dq_06.wav"></audio></td>
+</tr>
+<tr>
+<td width="50">Proposed:</td>
+<td width="50" align=center><audio controls><source src="Proposed/R2C/zn_04.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="Proposed/R2P/poetry_06.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="Proposed/R2G/dq_03.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="Proposed/TR2C/zn_13.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="Proposed/TR2P/poetry_14.wav"></audio></td>
+<td width="50" align=center><audio controls><source src="Proposed/TR2G/dq_06.wav"></audio></td>
+</tr>
+
+</table>
+<p><font color=red>Short summary: </font> The proposed model delivers a higher similarity than the other models. On the unseen style transfer of TR2C, TR2P and TR2G, the GST, VAE and MRF-IT models are not capable of keeping the speaker's timbre, resulting in lower similarity scores. The MRF-ACC system, the best of all references, still performs significantly worse than the proposed model.</p>
+</blockquote>
+
+</body>
+</html>

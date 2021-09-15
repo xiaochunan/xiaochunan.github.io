@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Demo page for effective and direct control of neural TTS prosody by removing interactions between different attributes</title>
+</head>
+<body>
+
+<h2 align="center"> Audio samples from "Effective and direct control of neural TTS prosody by removing interactions between different attributes"</h2>
+
+<div><b>Authors:</b> Xiaochun An, Frank K. Soong, Shan Yang, Lei Xie</div>
+
+<div><b>Abstract:</b> End-to-end TTS advancement has shown that synthesized speech prosody can be controlled by conditioning the decoder with speech prosody attribute labels. However, to annotate quantitatively the prosody patterns of a large set of training is both time consuming and expensive. To use unannotated data, variational autoencoder (VAE) has been proposed to model individual prosody attribute as a random variable in the latent space. The VAE is an unsupervised approach and the corresponding latent variables are in general correlated with each other. For more effective and direct control of speech prosody along each attribute dimension, it is highly desirable to disentangle the correlated latent variables. Additionally, being able to interpret the disentangled attributes as speech perceptual cues is useful for designing more efficient prosody control of TTS. In this paper, we propose two attribute separation schemes: (1) using 3 separate VAEs to model the real-valued, different prosodic features, i.e., F<SUB>0</SUB>, energy and duration; (2) minimizing mutual information between different prosody attributes to remove their mutual correlations, for facilitating more direct prosody control. Experimental results confirm that the two proposed schemes can indeed make individual prosody attributes more interpretable and direct TTS prosody control more effective. The improvements are measured objectively by F<SUB>0</SUB> Frame Error (FFE) and subjectively with MOS and A/B comparison listening tests, respectively. The scatter diagrams of t-SNE also demonstrate the correlations between prosody attributes, which are well disentangled by minimizing their mutual information. Synthesized TTS samples can be found at https://xiaochunan.github.io/prosody/index.html.</div>
+
+<h4>1. Comparing the VAE-DR models with the 8-dimensional, 16-dimensional and 32-dimensional <i> z<SUB>l</SUB> </i>:</h4>
+<h4>Quality: bad -> good</h4>
+<blockquote>
+<table>
+<tr><td colspan=2><span>Text: You've gotten to be kidding me.</span></td></tr>
+<tr>
+<td width="300">VAE-DR (dimensionality=8):</td><td width="300" align=center><audio controls><source src="diff_dimensions/8-dimensionality.wav"></audio></td>
+</tr>
+<tr>
+<td width="300">VAE-DR (dimensionality=16):</td><td width="300" align=center><audio controls><source src="diff_dimensions/16-dimensionality.wav"></audio></td>
+</tr>
+<tr>
+<td width="300">VAE-DR (dimensionality=32):</td><td width="300" align=center><audio controls><source src="diff_dimensions/32-dimensionality.wav"></audio></td>
+</tr>
+</table>
+<font color=red>Short summary: </font> In the VAE-DR model, increasing the dimensionality of <i> z<SUB>l</SUB> </i> improves reconstruction quality. However, this would reduce interpretability and generalization of the latent attribute control. Reducing dimensionality of <i> z<SUB>l</SUB> </i> results in poor modeling of latent attributes and weakening precise control of the corresponding speech attributes. Overall, the 16-dimensional <i> z<SUB>l</SUB> </i> is most appropriate for capturing the salient attributes for prosody control, although the volume attribute cannot be controlled.
+</blockquote>
+
+<blockquote>
+<table>
+<tr><td width="350" align=center><img src="diff_dimensions/FFE-MOS-results.png" width=350></td></tr>
+<tr><td align=center>Table 2. FFE and MOS evaluations of VAE-DR systems with different dimensionality of <i> z<SUB>l</SUB> </i>, and MOS evaluation with 95% confidence interval.</td></tr>
+</table>
+</blockquote>
+
+<h4>2. Comparing the controlling performance of pitch attribute with the VAE-DR (dimensionality=16), VAE-PF and VAE-MI models:</h4>
+We demonstrate the ability to control pitch attribute by changing the pitch dimension while keeping other dimensions fixed. The values set to the pitch dimension are shown in the second row, where μ and σ denote the mean and standard deviation of the pitch dimension, respectively.
+<h4>Pitch: Low -> High</h4>
+<blockquote>
+<table>
+<tr><td colspan=4><span>Text: Can you tell me an example?</span></td></tr>
+<tr>
+<td width="250">Value =</td><td align=center width=300>µ − 3δ</td><td align=center width=300>µ</td><td align=center width=300>µ + 3δ</td>
+</tr>
+<tr>
+<td width="250">VAE-DR (dimensionality=16):</td><td width="300" align=center><audio controls><source src="VAE-DR/pitch/low.wav"></audio></td>
+<td width="300" align=center><audio controls><source src="VAE-DR/pitch/medium.wav"></audio></td>
+<td width="300" align=center><audio controls><source src="VAE-DR/pitch/high.wav"></audio></td>
+</tr>
+<tr>
+<td width="250">VAE-PF:</td><td width="300" align=center><audio controls><source src="VAE-PF/pitch/low.wav"></audio></td>
+<td width="300" align=center><audio controls><source src="VAE-PF/pitch/medium.wav"></audio></td>
+<td width="300" align=center><audio controls><source src="VAE-PF/pitch/high.wav"></audio></td>
+</tr>
+<tr>
+<td width="250">VAE-MI:</td><td width="300" align=center><audio controls><source src="VAE-MI/pitch/low.wav"></audio></td>
+<td width="300" align=center><audio controls><source src="VAE-MI/pitch/medium.wav"></audio></td>
+<td width="300" align=center><audio controls><source src="VAE-MI/pitch/high.wav"></audio></td>
+</tr>
+<tr><td colspan=3><span>The corresponding F<SUB>0</SUB> and C<SUB>0</SUB> (energy of log scales) curves:</span></td></tr>
+<tr>
+<td width="250"></td><td align=center width=300>F<SUB>0</SUB> curves</td><td align=center width=300>C<SUB>0</SUB> curves</td>
+</tr>
+<tr>
+<td width="250">VAE-DR (dimensionality=16):</td><td width="300" align=center><img src="VAE-DR/pitch/appendixA-pitch.png" width=300></td>
+<td width="300" align=center><img src="VAE-DR/pitch/appendixA-volume.png" width=300></td>
+</tr>
+<tr>
+<td width="250">VAE-PF:</td><td width="300" align=center><img src="VAE-PF/pitch/appendixB-pitch.png" width=300></td>
+<td width="300" align=center><img src="VAE-PF/pitch/appendixB-volume.png" width=300></td>
+</tr>
+<tr>
+<td width="250">VAE-MI:</td><td width="300" align=center><img src="VAE-MI/pitch/appendixC-pitch.png" width=300></td>
+<td width="300" align=center><img src="VAE-MI/pitch/appendixC-volume.png" width=300></td>
+</tr>
+</table>
+<font color=red>Short summary: </font> In the VAE-DR and VAE-PF models, by manipulating pitch dimension we can control the pitch attribute while a cross-attribute control is observed in the volume and speech rate attributes. Although the VAE-PF system provides better interpretability and reliability of the pitch attribute control than the VAE-DR, precise and direct pitch control is still unreachable since the individual prosody attribute representations remain highly entangled with each other. Injecting the mutual information minimization significantly enhances independent control over pitch attribute.
+</blockquote>
+
+<h4>3. Comparing the controlling performance of volume attribute with the VAE-DR (dimensionality=16), VAE-PF and VAE-MI models:</h4>
+Since the VAE-DR model is fully unsupervised, it is not obvious to interpret the corresponding latent components without performing complex listening tests to find their perceptual attributes. In practice, we find no dimension seems to address the volume attribute and there are some spurious don't-care dimensions which do not affect the model output. With the VAE-PF and VAE-MI models, we demonstrate the ability to control volume attribute by changing the volume dimension while keeping other dimensions fixed. The values set to the volume dimension are shown in the second row, where μ and σ denote the mean and standard deviation of the volume dimension, respectively.
+<h4>Volume: Low -> High</h4>
+<blockquote>
+<table>
+<tr><td colspan=4><span>Text: This would have changed the grand result of the war. </span></td></tr>
+<tr>
+<td width="250">Value =</td><td align=center width=300>µ − 3δ</td><td align=center width=300>µ</td><td align=center width=300>µ + 3δ</td>
+</tr>
+<tr>
+<td width="250">VAE-DR (dimensionality=16):</td><td width="300" align=center><audio controls><source src="VAE-DR/volume/low.wav"></audio></td>
+<td width="300" align=center><audio controls><source src="VAE-DR/volume/medium.wav"></audio></td>
+<td width="300" align=center><audio controls><source src="VAE-DR/volume/high.wav"></audio></td>
+</tr>
+<tr>
+<td width="250">VAE-PF:</td><td width="300" align=center><audio controls><source src="VAE-PF/volume/low.wav"></audio></td>
+<td width="300" align=center><audio controls><source src="VAE-PF/volume/medium.wav"></audio></td>
+<td width="300" align=center><audio controls><source src="VAE-PF/volume/high.wav"></audio></td>
+</tr>
+<tr>
+<td width="250">VAE-MI:</td><td width="300" align=center><audio controls><source src="VAE-MI/volume/low.wav"></audio></td>
+<td width="300" align=center><audio controls><source src="VAE-MI/volume/medium.wav"></audio></td>
+<td width="300" align=center><audio controls><source src="VAE-MI/volume/high.wav"></audio></td>
+</tr>
+<tr><td colspan=3><span>The corresponding C<SUB>0</SUB> (energy of log scales) and F<SUB>0</SUB> curves:</span></td></tr>
+<tr>
+<td width="250"></td><td align=center width=300>C<SUB>0</SUB> curves</td><td align=center width=300>F<SUB>0</SUB> curves</td>
+</tr>
+<tr>
+<td width="250">VAE-DR (dimensionality=16):</td><td width="300" align=center><img src="VAE-DR/volume/appendixA-volume.png" width=300></td>
+<td width="300" align=center><img src="VAE-DR/volume/appendixA-pitch.png" width=300></td>
+</tr>
+<tr>
+<td width="250">VAE-PF:</td><td width="300" align=center><img src="VAE-PF/volume/appendixB-volume.png" width=300></td>
+<td width="300" align=center><img src="VAE-PF/volume/appendixB-pitch.png" width=300></td>
+</tr>
+<tr>
+<td width="250">VAE-MI:</td><td width="300" align=center><img src="VAE-MI/volume/appendixC-volume.png" width=300></td>
+<td width="300" align=center><img src="VAE-MI/volume/appendixC-pitch.png" width=300></td>
+</tr>
+</table>
+<font color=red>Short summary: </font> The VAE-DR system cannot control the volume attribute. With the VAE-PF model, when we only adjust volume dimension, there are still variations in the other attribute dimensions. Although the VAE-PF system improves the interpretability of volume attribute control, the fact that the information in volume attribute dimension can leak into other attribute dimension has made the independent control along volume attribute difficult. The VAE-MI model yields more precise volume attribute control.
+</blockquote>
+
+<h4>4. Comparing the controlling performance of speech rate attribute with the VAE-DR (dimensionality=16), VAE-PF and VAE-MI models:</h4>
+We demonstrate the ability to control speech rate attribute by changing the speech rate dimension while keeping other dimensions fixed. The values set to the speech rate dimension are shown in the second row, where μ and σ denote the mean and standard deviation of the speech rate dimension, respectively.
+<h4>Speech rate: Fast -> Slow</h4>
+<blockquote>
+<table>
+<tr><td colspan=4><span>Text: So many people disregard it, but it's really great and so many ways.</span></td></tr>
+<tr>
+<td width="250">Value =</td><td align=center width=300>µ − 3δ</td><td align=center width=300>µ</td><td align=center width=300>µ + 3δ</td>
+</tr>
+<tr>
+<td width="250">VAE-DR (dimensionality=16):</td><td width="300" align=center><audio controls><source src="VAE-DR/speech-rate/fast.wav"></audio></td>
+<td width="300" align=center><audio controls><source src="VAE-DR/speech-rate/medium.wav"></audio></td>
+<td width="300" align=center><audio controls><source src="VAE-DR/speech-rate/slow.wav"></audio></td>
+</tr>
+<tr>
+<td width="250">VAE-PF:</td><td width="300" align=center><audio controls><source src="VAE-PF/speech-rate/fast.wav"></audio></td>
+<td width="300" align=center><audio controls><source src="VAE-PF/speech-rate/medium.wav"></audio></td>
+<td width="300" align=center><audio controls><source src="VAE-PF/speech-rate/slow.wav"></audio></td>
+</tr>
+<tr>
+<td width="250">VAE-MI:</td><td width="300" align=center><audio controls><source src="VAE-MI/speech-rate/fast.wav"></audio></td>
+<td width="300" align=center><audio controls><source src="VAE-MI/speech-rate/medium.wav"></audio></td>
+<td width="300" align=center><audio controls><source src="VAE-MI/speech-rate/slow.wav"></audio></td>
+</tr>
+<tr><td colspan=4><span>Respectively calculating the time spent on each syllable in the utterance according to the phoneme alignments between the target text and generated speech, which objectively measures the variations of the speech rate attribute:</span></td></tr>
+<tr>
+<td width="150">Model:</td><td align=center width=350>VAE-DR (dimensionality=16):</td><td align=center width=350>VAE-PF:</td><td align=center width=350>VAE-MI:</td>
+</tr>
+<tr>
+<td width="150">Duration per syllable:</td><td width="350" align=center><img src="VAE-DR/speech-rate/appendixA-speech-rate.png" width=350></td>
+<td width="350" align=center><img src="VAE-PF/speech-rate/appendixB-speech-rate.png" width=350></td>
+<td width="350" align=center><img src="VAE-MI/speech-rate/appendixC-speech-rate.png" width=350></td>
+</tr>
+</table>
+<font color=red>Short summary: </font> The VAE-MI system outperforms the VAE-DR and VAE-PF models in speech rate control, where the duration per syllable substantially varies from short to long, which indicates that for the same utterance, the speech rate obviously changes from fast to slow respectively. The performance gain is essentially contributed by the proposed mutual information minimization scheme in decorrelating the individual prosody attributes.
+</blockquote>
+
+
+
+</body>
+</html>
